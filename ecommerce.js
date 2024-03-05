@@ -132,7 +132,7 @@ addToCart(2, 5)
 function displayCart(){
     for(const item of cart){
         console.log(item)
-        console.log(`Our product name is  + ${item}`)
+        console.log(`Our product name is ${item.productName}`)
     }
 
     // using the the reduce function to get the total price of the items in the cart
@@ -150,7 +150,7 @@ function startShopping(){
     while(true){
         
         const config = {
-            promptMessage: "Enter Your Preference: "
+            promptMessage: "Enter Your Preferred Item(ProductID): "
         }
         const choice = prompt(config.promptMessage)
 
@@ -160,6 +160,13 @@ function startShopping(){
         }
         
         const productId = parseInt(choice);
+        if(!ecommerceProduct.find((item) => item.productID === productId)){
+            console.log("Invalid item")
+            continue
+        }
+        const quantity = parseInt(prompt("Enter the Quantity: "))
+        addToCart(productId, quantity)
+
 
     }
 
